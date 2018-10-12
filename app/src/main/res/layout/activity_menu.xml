@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MenuActivity">
+
+    <LinearLayout
+        android:gravity="center"
+        android:background="@drawable/fondo_negocio"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="200dp">
+        <ImageView
+            android:id="@+id/imgMenu_Back"
+            android:layout_marginLeft="20dp"
+            android:layout_gravity="left"
+            android:src="@drawable/back_white"
+            android:layout_width="25dp"
+            android:layout_height="25dp" />
+        <ImageView
+            android:id="@+id/imgMenu_Logo"
+            android:src="@drawable/search"
+            android:layout_width="56dp"
+            android:layout_height="56dp" />
+        <TextView
+            android:id="@+id/tvMenu_Nombre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Frisby"
+            android:textSize="25dp"
+            android:textColor="@color/colorWhite"
+            android:textStyle="bold"/>
+        <TextView
+            android:textColor="@color/colorWhite"
+            android:id="@+id/tvMenu_Categoria"
+            android:drawableLeft="@drawable/cubiertos"
+            android:drawablePadding="5dp"
+            android:textSize="15dp"
+            android:textStyle="italic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Panaderia, Pollo y Pizza"/>
+        <LinearLayout
+            android:layout_marginTop="15dp"
+            android:weightSum="2"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:textColor="@color/colorWhite"
+                    android:textSize="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Entrega En"/>
+                <TextView
+                    android:textColor="@color/colorWhite"
+                    android:id="@+id/tvMenu_Entrega"
+                    android:textSize="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Entrega En"/>
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:textColor="@color/colorWhite"
+                    android:textSize="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Costo envío"/>
+                <TextView
+                    android:textColor="@color/colorWhite"
+                    android:id="@+id/tvMenu_Envio"
+                    android:textSize="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Entrega En"/>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+    <ProgressBar
+        android:id="@+id/progressBarMenu"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <ExpandableListView
+        android:id="@+id/elvMenu"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></ExpandableListView>
+</LinearLayout>
