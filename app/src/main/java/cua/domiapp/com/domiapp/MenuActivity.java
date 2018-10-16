@@ -43,7 +43,7 @@ public class MenuActivity extends AppCompatActivity {
     ExpandableListView elvMenu;
     MenuExpandableLVAdapter elvAdapter;
     Map<String,ArrayList<String>> mapProducto;
-
+    Map<String,ArrayList<Producto>> mapProductoList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,6 +58,7 @@ public class MenuActivity extends AppCompatActivity {
         back = findViewById(R.id.imgMenu_Back);
         listMenu = new ArrayList<>();
         mapProducto = new HashMap<>();
+        mapProductoList = new HashMap<>();
         elvMenu = findViewById(R.id.elvMenu);
         listStringMenu = new ArrayList<>();
         progressBarMenu = findViewById(R.id.progressBarMenu);
@@ -113,13 +114,14 @@ public class MenuActivity extends AppCompatActivity {
                     listProducto = new ArrayList<>();
                     listStringProduct = new ArrayList<>();
                     listMenu.add(menu);
-                    listStringMenu.add(menu.getNombre());
+                    listStringMenu.add(menu.getCodigo());
                     Call<List<Producto>> product = services.getProductos(menu.getCodigo());
                     for (Producto producto : product.execute().body()){
                         listProducto.add(producto);
-                        listStringProduct.add(producto.getNombre());
+                        listStringProduct.add(producto.getCodigo());
                     }
-                    mapProducto.put(menu.getNombre(),listStringProduct);
+                    mapProducto.put(menu.getCodigo(),listStringProduct);
+                    mapProductoList.put(menu.getCodigo(),listProducto);
                 }
             }catch (Exception e) {
                 Log.e("doInBackground: ", e.getMessage());
@@ -130,7 +132,7 @@ public class MenuActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
-            elvAdapter = new MenuExpandableLVAdapter(this.context,listStringMenu,mapProducto);
+            elvAdapter = new MenuExpandableLVAdapter(this.context,listStringMenu,mapProducto,mapProductoList,listMenu);
             elvMenu.setAdapter(elvAdapter);
             progressBarMenu.setVisibility(View.GONE);
         }

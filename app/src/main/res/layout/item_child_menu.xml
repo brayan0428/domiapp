@@ -1,17 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView android:layout_margin="10dp"
-    app:cardBackgroundColor="@color/colorAccent"
+<android.support.v7.widget.CardView
+    android:layout_margin="15dp"
+    app:cardBackgroundColor="@color/colorWhite"
     android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
-    <TextView
-        android:id="@+id/tvNombreProducto"
-        android:text="Nombre Producto"
-        android:textColor="@color/colorWhite"
+    <LinearLayout
         android:padding="15dp"
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_marginBottom="10dp"
+            android:id="@+id/imgProducto"
+            android:src="@mipmap/ic_launcher"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/tvNombreProducto"
+            android:text="Nombre Producto"
+            android:textStyle="bold"
+            android:textSize="18dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/tvDescripcionProducto"
+            android:text="Descripción Producto"
+            android:textColor="@color/colorPrimaryDark"
+            android:layout_width="match_parent"
+            android:textSize="10dp"
+            android:textStyle="italic"
+            android:layout_height="wrap_content" />
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:weightSum="2"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:gravity="center"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:inputType="number"
+                    android:textSize="20dp"
+                    android:text="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+                <Button
+                    android:id="@+id/addProductCart"
+                    android:background="@color/colorPrimaryDark"
+                    android:gravity="center"
+                    android:text="Agregar"
+                    android:textColor="@color/colorWhite"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
 </android.support.v7.widget.CardView>
