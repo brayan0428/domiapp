@@ -8,7 +8,32 @@
     android:focusable="true"
     android:focusableInTouchMode="true"
     tools:context=".MainActivity">
+    <android.support.v7.widget.Toolbar
+        android:background="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <LinearLayout
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+            <TextView
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="DomiApp"
+                android:textStyle="bold|italic"
+                android:textSize="20dp"
+                android:textColor="@color/colorWhite"/>
+            <ImageView
+                android:id="@+id/imgCerrarSesion"
+                android:layout_marginRight="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/unlock"/>
+        </LinearLayout>
 
+    </android.support.v7.widget.Toolbar>
     <EditText
         android:id="@+id/filtroNegocio"
         android:defaultFocusHighlightEnabled="false"

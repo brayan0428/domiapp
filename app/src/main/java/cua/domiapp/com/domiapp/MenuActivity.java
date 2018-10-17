@@ -1,11 +1,14 @@
 package cua.domiapp.com.domiapp;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.AsyncTask;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -14,12 +17,14 @@ import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import cua.domiapp.com.domiapp.Adapters.MenuExpandableLVAdapter;
+import cua.domiapp.com.domiapp.POJOS.CarritoCompras;
 import cua.domiapp.com.domiapp.POJOS.Menu;
 import cua.domiapp.com.domiapp.POJOS.Negocios;
 import cua.domiapp.com.domiapp.POJOS.Producto;
@@ -34,6 +39,7 @@ public class MenuActivity extends AppCompatActivity {
     ImageView back,logo;
     String codigoNegocio = "";
     ProgressBar progressBarMenu;
+    Button procesarCompra;
 
     ArrayList<Menu> listMenu;
     ArrayList<Producto> listProducto;
@@ -62,6 +68,7 @@ public class MenuActivity extends AppCompatActivity {
         elvMenu = findViewById(R.id.elvMenu);
         listStringMenu = new ArrayList<>();
         progressBarMenu = findViewById(R.id.progressBarMenu);
+        procesarCompra = findViewById(R.id.carritoCompras);
 
         //Obtengo parametros
         Bundle datos = this.getIntent().getExtras();
@@ -90,8 +97,28 @@ public class MenuActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
-        //Toast.makeText(getApplicationContext(),"Hola",Toast.LENGTH_LONG).show();
+        List<CarritoCompras> carritoCompras;
+        carritoCompras = MenuExpandableLVAdapter.carritoCompras;
+        if (carritoCompras.size() > 0){
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setCancelable(true)
+                    .setTitle("Confirmación")
+                    .setMessage("Si sales de esta pantalla perderas los productos del carrito ¿Deseas continuar?")
+                    .setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            MenuActivity.super.onBackPressed();
+                        }
+                    })
+                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            return;
+                        }
+                    });
+            builder.create();
+            builder.show();
+        }
     }
 
     public class Informacion extends AsyncTask<Void,Void,Void>{
@@ -132,7 +159,7 @@ public class MenuActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
-            elvAdapter = new MenuExpandableLVAdapter(this.context,listStringMenu,mapProducto,mapProductoList,listMenu);
+            elvAdapter = new MenuExpandableLVAdapter(this.context,listStringMenu,mapProducto,mapProductoList,listMenu,procesarCompra);
             elvMenu.setAdapter(elvAdapter);
             progressBarMenu.setVisibility(View.GONE);
         }

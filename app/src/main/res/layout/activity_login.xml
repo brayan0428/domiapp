@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:gravity="center"
+    android:background="@drawable/fondo_domiapp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginActivity">
+
+    <LinearLayout
+        android:layout_marginHorizontal="20dp"
+        android:gravity="center"
+        android:background="@drawable/background_transparent"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="350dp">
+        <ImageView
+            android:layout_width="250dp"
+            android:layout_height="100dp"
+            android:src="@drawable/text_domiapp"/>
+        <AutoCompleteTextView
+            android:id="@+id/acEmail"
+            android:drawableLeft="@drawable/user"
+            android:drawablePadding="10dp"
+            android:layout_marginBottom="10dp"
+            android:padding="10dp"
+            android:layout_marginHorizontal="10dp"
+            android:background="@drawable/rounded_editext"
+            android:hint="Email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <AutoCompleteTextView
+            android:id="@+id/acClave"
+            android:inputType="textPassword"
+            android:layout_marginBottom="10dp"
+            android:drawableLeft="@drawable/key"
+            android:drawablePadding="10dp"
+            android:padding="10dp"
+            android:layout_marginHorizontal="10dp"
+            android:background="@drawable/rounded_editext"
+            android:hint="Contraseña"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/btnIniciarSesion"
+            android:layout_marginHorizontal="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_corners"
+            android:text="Iniciar Sesion"
+            android:layout_marginBottom="10dp"
+            android:textColor="@color/colorWhite"/>
+        <ProgressBar
+            android:visibility="gone"
+            android:id="@+id/pbCargando"
+            android:indeterminateTint="@color/colorPrimaryDark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+</RelativeLayout>

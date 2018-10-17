@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,6 +19,7 @@ import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Map;
 
+import cua.domiapp.com.domiapp.POJOS.CarritoCompras;
 import cua.domiapp.com.domiapp.POJOS.Menu;
 import cua.domiapp.com.domiapp.POJOS.Producto;
 import cua.domiapp.com.domiapp.R;
@@ -29,14 +31,24 @@ public class MenuExpandableLVAdapter extends BaseExpandableListAdapter {
     Map<String,ArrayList<String>> mapProductos;
     Map<String,ArrayList<Producto>> mapProductosList;
     ArrayList<Menu> listMenuAll;
-
-    public MenuExpandableLVAdapter(Context context, ArrayList<String> listMenu, Map<String, ArrayList<String>> mapProductos,
-                                   Map<String,ArrayList<Producto>> mapProductosList,ArrayList<Menu> listMenuAll) {
+    Button procesarCompra;
+    public static ArrayList<CarritoCompras> carritoCompras;
+    public MenuExpandableLVAdapter(final Context context, ArrayList<String> listMenu, Map<String, ArrayList<String>> mapProductos,
+                                   Map<String,ArrayList<Producto>> mapProductosList, ArrayList<Menu> listMenuAll, Button procesarCompra) {
         this.context = context;
         this.listMenu = listMenu;
         this.mapProductos = mapProductos;
         this.mapProductosList = mapProductosList;
         this.listMenuAll = listMenuAll;
+        this.procesarCompra = procesarCompra;
+        this.carritoCompras = new ArrayList<>();
+
+        procesarCompra.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context,"Hola",Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     @Override
@@ -89,7 +101,7 @@ public class MenuExpandableLVAdapter extends BaseExpandableListAdapter {
     }
 
     @Override
-    public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
+    public View getChildView(final int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
         String nombreProducto = "",
                descripcionProducto = "",
                codigoProducto = "",
@@ -106,20 +118,33 @@ public class MenuExpandableLVAdapter extends BaseExpandableListAdapter {
             }
         }
         convertView = LayoutInflater.from(context).inflate(R.layout.item_child_menu,null);
+        final EditText etCantidadProducto = convertView.findViewById(R.id.cantidadProducto);
         TextView tvNombreProducto = convertView.findViewById(R.id.tvNombreProducto);
         TextView tvDescripcionProducto = convertView.findViewById(R.id.tvDescripcionProducto);
         Button addProductCart = convertView.findViewById(R.id.addProductCart);
         ImageView imgProducto = convertView.findViewById(R.id.imgProducto);
-        String precioFormateado = NumberFormat.getCurrencyInstance(new Locale("en", "US"))
-                .format(precioProducto).replace(",",".");
-        precioFormateado = precioFormateado.substring(0,precioFormateado.length() - 3);
-        tvNombreProducto.setText(nombreProducto + " - " + precioFormateado);
+        tvNombreProducto.setText(nombreProducto + " - " + formatearPrecio(precioProducto));
         tvDescripcionProducto.setText(descripcionProducto);
         final String finalCodigoProducto = codigoProducto;
+
+        final String finalImagenProducto = imagenProducto;
+        final double finalPrecioProducto = precioProducto;
+        final String finalNombreProducto = nombreProducto;
         addProductCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, finalCodigoProducto,Toast.LENGTH_LONG).show();
+                String cantidad = etCantidadProducto.getText().toString();
+                double precioTotal = finalPrecioProducto *  Integer.parseInt(cantidad);
+
+                CarritoCompras carro = new CarritoCompras(finalImagenProducto,(String) getGroup(groupPosition),finalCodigoProducto, finalNombreProducto,Integer.parseInt(cantidad),precioTotal);
+                carritoCompras.add(carro);
+                int TotalCarrito = 0;
+                for (CarritoCompras carrito:
+                     carritoCompras) {
+                    TotalCarrito += carrito.getValor();
+                }
+                procesarCompra.setText("Ver pedido - " + formatearPrecio(TotalCarrito));
+                procesarCompra.setVisibility(View.VISIBLE);
             }
         });
         Picasso.get()
@@ -127,10 +152,18 @@ public class MenuExpandableLVAdapter extends BaseExpandableListAdapter {
                 .error(R.drawable.ic_launcher_background)
                 .into(imgProducto);
         return convertView;
+
+
     }
 
     @Override
     public boolean isChildSelectable(int groupPosition, int childPosition) {
         return true;
+    }
+
+    public String formatearPrecio(double precioProducto){
+        String precioFormateado = NumberFormat.getCurrencyInstance(new Locale("en", "US"))
+                .format(precioProducto).replace(",",".");
+       return precioFormateado.substring(0,precioFormateado.length() - 3);
     }
 }
