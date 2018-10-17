@@ -1,6 +1,9 @@
 package cua.domiapp.com.domiapp.POJOS;
 
-public class CarritoCompras {
+import android.content.Intent;
+import android.support.annotation.NonNull;
+
+public class CarritoCompras implements Comparable<CarritoCompras>{
     String imagenProducto;
     String codigoNegocio;
     String codigoProducto;
@@ -63,5 +66,11 @@ public class CarritoCompras {
 
     public void setValor(double valor) {
         this.valor = valor;
+    }
+
+    @Override
+    public int compareTo(CarritoCompras compras) {
+        int codigo = Integer.parseInt(compras.getCodigoProducto());
+        return Integer.parseInt(this.codigoProducto) - codigo;
     }
 }

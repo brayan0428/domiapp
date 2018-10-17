@@ -18,6 +18,7 @@ import java.util.List;
 
 import cua.domiapp.com.domiapp.MenuActivity;
 import cua.domiapp.com.domiapp.POJOS.Negocios;
+import cua.domiapp.com.domiapp.POJOS.Variables;
 import cua.domiapp.com.domiapp.R;
 
 public class NegociosAdapter extends RecyclerView.Adapter<NegociosAdapter.ViewHolder> {
@@ -41,7 +42,7 @@ public class NegociosAdapter extends RecyclerView.Adapter<NegociosAdapter.ViewHo
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         holder.tvNombreNegocio.setText(negociosList.get(position).getNombre());
         holder.tvCategoriaNegocio.setText(negociosList.get(position).getNombre_categoria());
-        holder.tvCostoEnvioNegocio.setText(negociosList.get(position).getCostoenvio());
+        holder.tvCostoEnvioNegocio.setText(Variables.formatearPrecio(Double.parseDouble(negociosList.get(position).getCostoenvio())));
         holder.tvTiempoEntregaNegocio.setText(negociosList.get(position).getTiempoentrega());
         Picasso.get()
                 .load(negociosList.get(position).getLogo())

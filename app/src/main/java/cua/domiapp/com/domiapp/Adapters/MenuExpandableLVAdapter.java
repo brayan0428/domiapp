@@ -2,6 +2,7 @@ package cua.domiapp.com.domiapp.Adapters;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +24,7 @@ import cua.domiapp.com.domiapp.POJOS.CarritoCompras;
 import cua.domiapp.com.domiapp.POJOS.Menu;
 import cua.domiapp.com.domiapp.POJOS.Producto;
 import cua.domiapp.com.domiapp.R;
+import cua.domiapp.com.domiapp.VerPedidoActivity;
 
 public class MenuExpandableLVAdapter extends BaseExpandableListAdapter {
 
@@ -46,7 +48,9 @@ public class MenuExpandableLVAdapter extends BaseExpandableListAdapter {
         procesarCompra.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context,"Hola",Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(context, VerPedidoActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(intent);
             }
         });
     }
