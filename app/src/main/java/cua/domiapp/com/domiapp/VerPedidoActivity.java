@@ -1,9 +1,13 @@
 package cua.domiapp.com.domiapp;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -17,11 +21,13 @@ import cua.domiapp.com.domiapp.POJOS.Variables;
 
 public class VerPedidoActivity extends AppCompatActivity {
     RecyclerView rvVerPedido;
+    ImageView imgBackPedido;
     ArrayList<CarritoCompras> carritoCompras;
     ArrayList<CarritoCompras> carritoCompras_New;
     VerPedidoAdapter verPedidoAdapter;
+    Button btnContinuarPedido;
 
-    TextView tvTotal_Pedido,
+    static TextView tvTotal_Pedido,
              tvTotalEnvio,
              tvSubtotalPedido;
 
@@ -34,6 +40,8 @@ public class VerPedidoActivity extends AppCompatActivity {
         tvSubtotalPedido = findViewById(R.id.tvSubtotalPedido);
         tvTotalEnvio = findViewById(R.id.tvValorEnvio);
         tvTotal_Pedido = findViewById(R.id.tvTotal_Pedido);
+        imgBackPedido = findViewById(R.id.imgBackPedido);
+        btnContinuarPedido = findViewById(R.id.btnContinuarPedido);
 
         LinearLayoutManager linearLayout = new LinearLayoutManager(this,LinearLayout.VERTICAL,false);
         rvVerPedido.setLayoutManager(linearLayout);
@@ -41,6 +49,20 @@ public class VerPedidoActivity extends AppCompatActivity {
         agruparPedido();
         verPedidoAdapter = new VerPedidoAdapter(this,carritoCompras_New);
         rvVerPedido.setAdapter(verPedidoAdapter);
+
+        imgBackPedido.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+        btnContinuarPedido.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),DatosEnvioActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     public void agruparPedido(){
@@ -76,5 +98,15 @@ public class VerPedidoActivity extends AppCompatActivity {
         tvTotalEnvio.setText(Variables.formatearPrecio(5000));
         tvTotal_Pedido.setText(Variables.formatearPrecio(valor_Total + 5000));
 
+    }
+
+    public static void sumatoriaTotal(ArrayList<CarritoCompras> carritoCompras){
+        double valor_Total = 0;
+        for (CarritoCompras carrito: carritoCompras) {
+            valor_Total += carrito.getValor();
+        }
+        tvSubtotalPedido.setText(Variables.formatearPrecio(valor_Total));
+        tvTotalEnvio.setText(Variables.formatearPrecio(5000));
+        tvTotal_Pedido.setText(Variables.formatearPrecio(valor_Total + 5000));
     }
 }

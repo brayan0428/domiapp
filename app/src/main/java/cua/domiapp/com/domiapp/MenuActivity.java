@@ -39,7 +39,7 @@ public class MenuActivity extends AppCompatActivity {
     ImageView back,logo;
     String codigoNegocio = "";
     ProgressBar progressBarMenu;
-    Button procesarCompra;
+    public static Button procesarCompra;
 
     ArrayList<Menu> listMenu;
     ArrayList<Producto> listProducto;
@@ -79,7 +79,7 @@ public class MenuActivity extends AppCompatActivity {
                     .into(logo);
             nombre.setText(datos.getString("pNombre"));
             categoria.setText(datos.getString("pCategoria"));
-            costoenvio.setText(datos.getString("pCostoEnvio"));
+            costoenvio.setText(Variables.formatearPrecio(Integer.parseInt(datos.getString("pCostoEnvio"))) );
             tiempoentrega.setText(datos.getString("pTiempoEntrega"));
             codigoNegocio = datos.getString("pCodigo");
         }

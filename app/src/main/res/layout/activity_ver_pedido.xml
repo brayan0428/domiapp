@@ -16,6 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp">
             <ImageView
+                android:id="@+id/imgBackPedido"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:src="@drawable/back_white"/>
@@ -56,17 +57,7 @@
                 android:layout_weight="1"
                 android:gravity="center">
 
-                <RadioGroup
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
 
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:buttonTint="@color/colorPrimaryDark"
-                        android:checked="true"
-                        android:text="Efectivo" />
-                </RadioGroup>
             </LinearLayout>
 
             <LinearLayout
@@ -82,6 +73,8 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textStyle="bold"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="25dp"
@@ -100,6 +93,8 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textStyle="bold"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="44dp"
@@ -118,6 +113,8 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textStyle="bold"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="45dp"
@@ -131,13 +128,13 @@
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
-
         <Button
+            android:id="@+id/btnContinuarPedido"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:background="@drawable/rounded_corners"
-            android:text="Confirmar Pedido"
+            android:text="Continuar Pedido"
             android:textColor="@color/colorWhite" />
     </LinearLayout>
 </RelativeLayout>
