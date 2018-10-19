@@ -6,7 +6,7 @@ public class Pedido_Enc {
     String idnegocio;
     double valor;
     String direccion;
-    String metodopado;
+    String metodopago;
     String fechaing;
 
     public Pedido_Enc(int codigo, int idusuario, String idnegocio, double valor, String direccion, String metodopado, String fechaing) {
@@ -15,7 +15,7 @@ public class Pedido_Enc {
         this.idnegocio = idnegocio;
         this.valor = valor;
         this.direccion = direccion;
-        this.metodopado = metodopado;
+        this.metodopago = metodopado;
         this.fechaing = fechaing;
     }
 
@@ -59,12 +59,12 @@ public class Pedido_Enc {
         this.direccion = direccion;
     }
 
-    public String getMetodopado() {
-        return metodopado;
+    public String getMetodopago() {
+        return metodopago;
     }
 
-    public void setMetodopado(String metodopado) {
-        this.metodopado = metodopado;
+    public void setMetodopago(String metodopago) {
+        this.metodopago = metodopago;
     }
 
     public String getFechaing() {

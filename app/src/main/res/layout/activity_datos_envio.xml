@@ -27,6 +27,7 @@
     </android.support.v7.widget.Toolbar>
 
     <EditText
+        android:id="@+id/etDireccionEnvio"
         android:hint="Dirección"
         android:padding="10dp"
         android:layout_margin="10dp"
@@ -34,6 +35,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
     <EditText
+        android:id="@+id/etBarrioEnvio"
         android:hint="Barrio"
         android:padding="10dp"
         android:layout_margin="10dp"
@@ -41,6 +43,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
     <EditText
+        android:id="@+id/etTelefonoEnvio"
         android:hint="Telefono"
         android:padding="10dp"
         android:layout_margin="10dp"
@@ -152,6 +155,7 @@
         </LinearLayout>
     </LinearLayout>
     <Button
+        android:id="@+id/btnConfirmarPedido"
         android:layout_marginHorizontal="10dp"
         android:layout_marginTop="30dp"
         android:textColor="@color/colorWhite"
