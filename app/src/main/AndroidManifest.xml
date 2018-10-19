@@ -21,7 +21,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".VerPedidoActivity" />
-        <activity android:name=".DatosEnvioActivity"></activity>
+        <activity android:name=".DatosEnvioActivity" />
+        <activity android:name=".MisPedidosActivity" />
+        <activity android:name=".RegistrarmeActivity"></activity>
     </application>
 
 </manifest>

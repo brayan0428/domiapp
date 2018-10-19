@@ -14,13 +14,24 @@
         android:background="@drawable/background_transparent"
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="380dp">
+        android:layout_height="400dp">
         <ImageView
             android:layout_width="250dp"
             android:layout_height="100dp"
             android:src="@drawable/text_domiapp"/>
         <AutoCompleteTextView
-            android:id="@+id/acEmail"
+            android:id="@+id/acNombreRegistro"
+            android:drawableLeft="@drawable/user"
+            android:drawablePadding="10dp"
+            android:layout_marginBottom="10dp"
+            android:padding="10dp"
+            android:layout_marginHorizontal="10dp"
+            android:background="@drawable/rounded_editext"
+            android:hint="Nombre Completo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <AutoCompleteTextView
+            android:id="@+id/acEmailRegistro"
             android:drawableLeft="@drawable/user"
             android:drawablePadding="10dp"
             android:layout_marginBottom="10dp"
@@ -31,7 +42,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
         <AutoCompleteTextView
-            android:id="@+id/acClave"
+            android:id="@+id/acClaveRegistro"
             android:inputType="textPassword"
             android:layout_marginBottom="10dp"
             android:drawableLeft="@drawable/key"
@@ -42,28 +53,26 @@
             android:hint="Contraseña"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+        <AutoCompleteTextView
+            android:id="@+id/acConfirmarClaveRegistro"
+            android:inputType="textPassword"
+            android:layout_marginBottom="10dp"
+            android:drawableLeft="@drawable/key"
+            android:drawablePadding="10dp"
+            android:padding="10dp"
+            android:layout_marginHorizontal="10dp"
+            android:background="@drawable/rounded_editext"
+            android:hint="Confirmar Clave"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
         <Button
-            android:id="@+id/btnIniciarSesion"
+            android:id="@+id/btnGuardarUsuario"
             android:layout_marginHorizontal="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_corners"
-            android:text="Iniciar Sesion"
+            android:text="crear usuario"
             android:layout_marginBottom="10dp"
             android:textColor="@color/colorWhite"/>
-        <TextView
-            android:id="@+id/tvRegistrarme"
-            android:textSize="15dp"
-            android:textColor="@color/colorPrimaryDark"
-            android:gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Registrarme"/>
-        <ProgressBar
-            android:visibility="gone"
-            android:id="@+id/pbCargando"
-            android:indeterminateTint="@color/colorPrimaryDark"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
     </LinearLayout>
 </RelativeLayout>

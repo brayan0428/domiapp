@@ -118,6 +118,8 @@ public class MenuActivity extends AppCompatActivity {
                     });
             builder.create();
             builder.show();
+        }else{
+            MenuActivity.super.onBackPressed();
         }
     }
 
@@ -159,7 +161,7 @@ public class MenuActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
-            elvAdapter = new MenuExpandableLVAdapter(this.context,listStringMenu,mapProducto,mapProductoList,listMenu,procesarCompra);
+            elvAdapter = new MenuExpandableLVAdapter(this.context,listStringMenu,mapProducto,mapProductoList,listMenu,procesarCompra,codigoNegocio,elvMenu);
             elvMenu.setAdapter(elvAdapter);
             progressBarMenu.setVisibility(View.GONE);
         }

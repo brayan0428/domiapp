@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,16 +28,17 @@ import cua.domiapp.com.domiapp.R;
 import cua.domiapp.com.domiapp.VerPedidoActivity;
 
 public class MenuExpandableLVAdapter extends BaseExpandableListAdapter {
-
     Context context;
     ArrayList<String> listMenu;
     Map<String,ArrayList<String>> mapProductos;
     Map<String,ArrayList<Producto>> mapProductosList;
     ArrayList<Menu> listMenuAll;
     Button procesarCompra;
+    String codigoNegocio;
+    ExpandableListView expandableListView;
     public static ArrayList<CarritoCompras> carritoCompras;
     public MenuExpandableLVAdapter(final Context context, ArrayList<String> listMenu, Map<String, ArrayList<String>> mapProductos,
-                                   Map<String,ArrayList<Producto>> mapProductosList, ArrayList<Menu> listMenuAll, Button procesarCompra) {
+                                   Map<String,ArrayList<Producto>> mapProductosList, ArrayList<Menu> listMenuAll, Button procesarCompra, String codigoNegocio, ExpandableListView expandableListView) {
         this.context = context;
         this.listMenu = listMenu;
         this.mapProductos = mapProductos;
@@ -44,6 +46,8 @@ public class MenuExpandableLVAdapter extends BaseExpandableListAdapter {
         this.listMenuAll = listMenuAll;
         this.procesarCompra = procesarCompra;
         this.carritoCompras = new ArrayList<>();
+        this.codigoNegocio = codigoNegocio;
+        this.expandableListView = expandableListView;
 
         procesarCompra.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -140,7 +144,7 @@ public class MenuExpandableLVAdapter extends BaseExpandableListAdapter {
                 String cantidad = etCantidadProducto.getText().toString();
                 double precioTotal = finalPrecioProducto *  Integer.parseInt(cantidad);
 
-                CarritoCompras carro = new CarritoCompras(finalImagenProducto,(String) getGroup(groupPosition),finalCodigoProducto, finalNombreProducto,Integer.parseInt(cantidad),precioTotal);
+                CarritoCompras carro = new CarritoCompras(finalImagenProducto,codigoNegocio,finalCodigoProducto, finalNombreProducto,Integer.parseInt(cantidad),precioTotal);
                 carritoCompras.add(carro);
                 int TotalCarrito = 0;
                 for (CarritoCompras carrito:
@@ -169,5 +173,18 @@ public class MenuExpandableLVAdapter extends BaseExpandableListAdapter {
         String precioFormateado = NumberFormat.getCurrencyInstance(new Locale("en", "US"))
                 .format(precioProducto).replace(",",".");
        return precioFormateado.substring(0,precioFormateado.length() - 3);
+    }
+
+    int lastExpandedGroupPosition = 0;
+    @Override
+    public void onGroupExpanded(int groupPosition) {
+        //collapse the old expanded group, if not the same
+        //as new group to expand
+        if(groupPosition != lastExpandedGroupPosition){
+            expandableListView.collapseGroup(lastExpandedGroupPosition);
+        }
+
+        super.onGroupExpanded(groupPosition);
+        lastExpandedGroupPosition = groupPosition;
     }
 }

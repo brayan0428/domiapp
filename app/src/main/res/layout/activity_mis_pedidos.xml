@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MisPedidosActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:background="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <ImageView
+            android:id="@+id/imgBackMisPedido"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/back_white"/>
+        <TextView
+            android:textSize="20dp"
+            android:textColor="@color/colorWhite"
+            android:layout_marginLeft="25dp"
+            android:text="Mis Pedido"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </android.support.v7.widget.Toolbar>
+    <ProgressBar
+        android:id="@+id/pbCargandoMisPedidos"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/tvNoTienePedido"
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_margin="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Usted no tiene pedidos realizados"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvMisPedidos"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+</LinearLayout>

@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.List;
@@ -22,9 +23,11 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class LoginActivity extends AppCompatActivity {
+    TextView tvRegistrarme;
     Button btnLogin;
     AutoCompleteTextView acEmail,acClave;
     ProgressBar pbCargando;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +42,7 @@ public class LoginActivity extends AppCompatActivity {
         acEmail = findViewById(R.id.acEmail);
         acClave = findViewById(R.id.acClave);
         pbCargando = findViewById(R.id.pbCargando);
+        tvRegistrarme = findViewById(R.id.tvRegistrarme);
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,6 +80,14 @@ public class LoginActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(),t.getMessage(),Toast.LENGTH_LONG).show();
                     }
                 });
+            }
+        });
+
+        tvRegistrarme.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),RegistrarmeActivity.class);
+                startActivity(intent);
             }
         });
     }

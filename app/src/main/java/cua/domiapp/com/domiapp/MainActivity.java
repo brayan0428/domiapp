@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
     NegociosAdapter negociosAdapter;
     EditText filtroNegocio;
     ProgressBar progressBar;
-    ImageView imgCerrarSesion;
+    ImageView imgCerrarSesion,imgVerPedidos;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //setTheme(R.style.AppTheme);
@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
         filtroNegocio = findViewById(R.id.filtroNegocio);
         progressBar = findViewById(R.id.progressBar);
         imgCerrarSesion = findViewById(R.id.imgCerrarSesion);
+        imgVerPedidos = findViewById(R.id.imgVerPedidos);
 
         //Creamos el LinearLayoutManager para manejar el RecylerView
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
@@ -101,6 +102,14 @@ public class MainActivity extends AppCompatActivity {
                         });
                 builder.create();
                 builder.show();
+            }
+        });
+
+        imgVerPedidos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),MisPedidosActivity.class);
+                startActivity(intent);
             }
         });
         //Animaciones
