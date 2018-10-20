@@ -59,7 +59,7 @@ public class LoginActivity extends AppCompatActivity {
                     return;
                 }
                 pbCargando.setVisibility(View.VISIBLE);
-                Usuario usuario  = new Usuario(0,Email,Clave);
+                Usuario usuario  = new Usuario(0,Email,Clave,"");
                 Call<List<Usuario>> response = services.getUsuario(usuario);
                 response.enqueue(new Callback<List<Usuario>>() {
                     @Override

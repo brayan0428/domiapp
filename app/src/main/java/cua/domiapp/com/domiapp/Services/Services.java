@@ -36,4 +36,7 @@ public interface Services {
 
     @POST("/guardarPedidoDet")
     Call<String> ingresarPedidoDet(@Body Pedido_Det pedido_det);
+
+    @POST("/usuarionuevo")
+    Call<String> ingresarUsuario(@Body Usuario usuario);
 }

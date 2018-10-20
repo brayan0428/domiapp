@@ -19,7 +19,7 @@
             android:textSize="20dp"
             android:textColor="@color/colorWhite"
             android:layout_marginLeft="25dp"
-            android:text="Mis Pedido"
+            android:text="Mis Pedidos"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </android.support.v7.widget.Toolbar>

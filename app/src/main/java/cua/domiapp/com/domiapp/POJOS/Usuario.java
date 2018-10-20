@@ -4,11 +4,13 @@ public class Usuario {
     int id;
     String email;
     String clave;
+    String nombre;
 
-    public Usuario(int id, String email, String clave) {
+    public Usuario(int id, String email, String clave,String nombre) {
         this.id = id;
         this.email = email;
         this.clave = clave;
+        this.nombre = nombre;
     }
 
     public int getId() {
@@ -33,5 +35,12 @@ public class Usuario {
 
     public void setClave(String clave) {
         this.clave = clave;
+    }
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 }
