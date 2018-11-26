@@ -1,7 +1,16 @@
 package cua.domiapp.com.domiapp;
 
+import android.Manifest;
+import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.AsyncTask;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -9,9 +18,11 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Adapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +43,6 @@ public class MisPedidosActivity extends AppCompatActivity {
     MisPedidosAdapter misPedidosAdapter;
     ProgressBar pbCargandoMisPedidos;
     TextView tvNoTienePedido;
-
     int idusuario = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +53,6 @@ public class MisPedidosActivity extends AppCompatActivity {
         rvMisPedidos = findViewById(R.id.rvMisPedidos);
         pbCargandoMisPedidos = findViewById(R.id.pbCargandoMisPedidos);
         tvNoTienePedido = findViewById(R.id.tvNoTienePedido);
-
         SharedPreferences sp = getSharedPreferences("datosUsuario",MODE_PRIVATE);
         idusuario = sp.getInt("IdUsuario",0);
 
@@ -59,6 +68,16 @@ public class MisPedidosActivity extends AppCompatActivity {
         });
 
         new Peticion().execute();
+
+        int permissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION);
+        if (permissionCheck == PackageManager.PERMISSION_DENIED){
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_FINE_LOCATION)) {
+
+            }else{
+                ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION},1);
+            }
+        }
+        obtenerCoordenadas();
     }
 
     public class Peticion extends AsyncTask<Void,Void,Void> {
@@ -91,5 +110,34 @@ public class MisPedidosActivity extends AppCompatActivity {
                 tvNoTienePedido.setVisibility(View.VISIBLE);
             }
         }
+    }
+
+    private void obtenerCoordenadas(){
+        LocationManager locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+        LocationListener locationListener = new LocationListener() {
+            @Override
+            public void onLocationChanged(Location location) {
+                Variables.lat_origen = location.getLatitude();
+                Variables.long_origen = location.getLongitude();
+                //Toast.makeText(getApplicationContext(),location.getLatitude() + " - " + location.getLongitude(),Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onStatusChanged(String provider, int status, Bundle extras) {
+
+            }
+
+            @Override
+            public void onProviderEnabled(String provider) {
+
+            }
+
+            @Override
+            public void onProviderDisabled(String provider) {
+
+            }
+        };
+        int permissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION);
+        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,0,0,locationListener);
     }
 }

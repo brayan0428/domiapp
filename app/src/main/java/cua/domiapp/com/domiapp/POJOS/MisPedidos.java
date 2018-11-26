@@ -6,14 +6,17 @@ public class MisPedidos {
     String fecha;
     String entregado;
     String nombrenegocio;
+    double latitud;
+    double longitud;
 
-
-    public MisPedidos(int numpedido, double valortotal, String fecha, String entregado, String nombrenegocio) {
+    public MisPedidos(int numpedido, double valortotal, String fecha, String entregado, String nombrenegocio, double latitud, double longitud) {
         this.numpedido = numpedido;
         this.valortotal = valortotal;
         this.fecha = fecha;
         this.entregado = entregado;
         this.nombrenegocio = nombrenegocio;
+        this.latitud = latitud;
+        this.longitud = longitud;
     }
 
     public int getNumpedido() {
@@ -56,4 +59,19 @@ public class MisPedidos {
         this.nombrenegocio = nombrenegocio;
     }
 
+    public double getLatitud() {
+        return latitud;
+    }
+
+    public void setLatitud(double latitud) {
+        this.latitud = latitud;
+    }
+
+    public double getLongitud() {
+        return longitud;
+    }
+
+    public void setLongitud(double longitud) {
+        this.longitud = longitud;
+    }
 }
